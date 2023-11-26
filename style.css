@@ -74,10 +74,11 @@ select {
 }
 
 body{
-    display: flex;
+    display: grid;
+    min-height: 100vh;
     place-content: center;
     font-family: var(--ff);
-    margin: 3rem 1.5rem;
+    margin: auto;
     background-color: var(--clr-neutral-900);
 }
 
@@ -85,19 +86,54 @@ body{
 .card{
     padding: 1.5rem;
     border-radius: 1rem;
-    
+    margin-bottom: 0.75rem;
+    max-width: 310px;
     color: var(--clr-neutral-100);
     background-color: var(--clr-neutral-800);
+}
+
+.hover-effect{
+  display: grid;
+  grid-template-areas: "stack";
+  cursor: pointer;
+}
+
+.hover-effect > *{
+  grid-area: stack;
+}
+
+.filter{
+  background-color: var(--clr-primary-400);
+  border-radius: 0.6rem;
+  margin-bottom: 1rem;
+}
+
+.container{
+  position: relative;
+  display: inline-block;
 }
 
 .nft__img{
     border-radius: 0.5rem;
     margin-bottom: 1rem;
-    
+    color: var(--clr-primary-400);
 }
 
+.container > svg{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+}
 
-.card > a{
+.words{
+  display: grid;
+  grid-template-columns: auto;
+  gap: 1rem;
+}
+
+.words > a{
     color: var(--clr-neutral-100);
     text-decoration: none;
     font-weight: var(--fw-bold);
@@ -105,12 +141,15 @@ body{
     margin-top: 1rem;
 }
 
-.card > p{
+.words > p{
+    --content-padding: 0.75;
     color: var(--clr-primary-300);
-    margin-bottom: 0.75rem;
-    margin-top: 0.75rem;
+    margin-bottom: var(--content-padding);
+    margin-top: var(--content-padding);
     font-weight: var(--fw-light);
 }
+
+
 
 .icon__eth{
     max-width: 1rem;
@@ -122,28 +161,34 @@ body{
 
 .card-nft{
     display: flex;
+    flex-direction: row;
     gap: 4rem;
     columns: 2;
-    align-content: center;
+    align-items: center;
 
     padding-bottom: 1rem;
+    padding-top: 1rem;
     border-bottom-style: solid;
     border-bottom-width: thin;
     border-bottom-color: var(--clr-primary-300);
+
+    font-size: 0.9rem;
+    font-weight: bolder;
 }
 
-.card__eth{
+.eth_price{
     display: flex;
+    flex-direction: row;
     align-items: center;
-    gap: 0.4rem;
+    gap: 0.5rem;
     color: var(--clr-primary-400);
-    font-weight: var(--fw-medium);
+    font-weight: var(--fw-bold);
     border-bottom: 1px;
 }
 
 .time{
     display: flex;
-    align-items: center;
+    justify-items: baseline;
     padding-left: 0.5rem;
     gap: 0.5rem;
     color: var(--clr-primary-300);
@@ -152,6 +197,8 @@ body{
 
 .profile__img{
     max-width: 35px;
+    border: 2px solid var(--clr-neutral-100);
+    border-radius: 50%;
 }
 
 .profile__link{
@@ -172,12 +219,22 @@ body{
     border-top-color: var(--clr-primary-300);
 }
 
-.nft__link :hover{
+.nft__link:hover{
   color: var(--clr-primary-400);
   transition: 300ms ease;
 }
 
-.profile__link :hover{
+.profile__link:hover{
   color: var(--clr-primary-400);
   transition: 300ms ease;  
+}
+
+.container:hover .nft__img{
+  opacity: .5;
+  transition: 400ms ease-in;
+}
+
+.container:hover .svg{
+  opacity: 1;
+  transition: 400ms ease-in;
 }
